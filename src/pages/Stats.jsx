@@ -1,22 +1,31 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { isValidOrder, useApp } from "../context/AppContext";
 
 const Stats = () => {
   const { orders, loading, error } = useApp();
 
-  const metrics = useMemo(() => {
-    const validOrders = orders.filter(isValidOrder);
+  const metrics = orders.reduce(
+    (acc, order) => {
+      if (!isValidOrder(order)) {
+        return acc;
+      }
 
-    return {
-      totalOrders: validOrders.length,
-      deliveredOrders: validOrders.filter(
-        (order) => order.status.trim().toLowerCase() === "delivered",
-      ).length,
-      cancelledOrders: validOrders.filter(
-        (order) => order.status.trim().toLowerCase() === "cancelled",
-      ).length,
-    };
-  }, [orders]);
+      const status = String(order?.status ?? "").trim().toLowerCase();
+
+      acc.totalOrders += 1;
+
+      if (status === "delivered") {
+        acc.deliveredOrders += 1;
+      }
+
+      if (status === "cancelled") {
+        acc.cancelledOrders += 1;
+      }
+
+      return acc;
+    },
+    { totalOrders: 0, deliveredOrders: 0, cancelledOrders: 0 },
+  );
 
   useEffect(() => {
     window.appSate = metrics;
