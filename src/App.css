@@ -50,13 +50,15 @@
 .nav-link,
 .order-card__link {
   padding: 6px 10px;
-  border: 1px solid #ccc;
+  border: 0;
   background: #fff;
+  text-decoration: underline;
 }
 
 .nav-link.active {
-  background: #eee;
+  background: #fff;
   color: #111;
+  font-weight: 700;
 }
 
 .hero-panel,
@@ -92,7 +94,7 @@
 .hero-stat,
 .stat-card,
 .detail-card {
-  padding: 8px;
+  padding: 8px 0;
 }
 
 .hero-stat {
@@ -125,20 +127,20 @@
 .card-grid,
 .stat-grid,
 .detail-grid {
-  display: grid;
+  display: block;
   gap: 12px;
 }
 
 .card-grid {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: none;
 }
 
 .stat-grid {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: none;
 }
 
 .detail-grid {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: none;
 }
 
 .order-card {
@@ -167,9 +169,9 @@
 
 .status-badge {
   display: inline-flex;
-  padding: 4px 8px;
+  padding: 0;
   font-size: 12px;
-  border: 1px solid #ccc;
+  border: 0;
   background: #fff;
 }
 
@@ -180,8 +182,8 @@
 }
 
 .order-card__meta div {
-  padding: 6px;
-  border: 1px solid #eee;
+  padding: 0;
+  border: 0;
 }
 
 .order-card__items,
@@ -192,8 +194,8 @@
 }
 
 .item-chip {
-  padding: 6px 8px;
-  border: 1px solid #ddd;
+  padding: 0;
+  border: 0;
   background: #fff;
 }
 
@@ -208,7 +210,7 @@
 .filter-bar input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   background: #fff;
 }
 
@@ -235,8 +237,14 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 12px;
-  border: 1px solid #eee;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.stat-card,
+.detail-card {
+  border-bottom: 1px solid #ddd;
 }
 
 .state-message,
